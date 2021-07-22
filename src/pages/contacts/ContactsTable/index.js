@@ -10,6 +10,8 @@ import Avatar from '@material-ui/core/Avatar';
 import format from 'date-fns/format';
 import parseISO from 'date-fns/parseISO';
 import { Typography } from '@material-ui/core';
+import {NATIONALITY_HUMAN_NAMES} from "../../../constants/nationality"
+import { CopyToClipboardText } from "../../../components/CopyToClipboardText"
 
 
 const useStyles = makeStyles({
@@ -45,10 +47,10 @@ export const ContactsTable = ({data}) => {
                 </Typography>
                 <Typography>{item.dob.age} years</Typography>
                 </TableCell>
-              <TableCell >{item.phone}</TableCell>
-              <TableCell >{item.email}</TableCell>
-              <TableCell >6</TableCell>
-              <TableCell >7</TableCell>
+              <TableCell><CopyToClipboardText text={item.phone} /></TableCell>
+              <TableCell><CopyToClipboardText text={item.email} /></TableCell>
+              <TableCell ><Typography>{item.location.country}, {item.location.city}, {item.location.street.name} {item.location.street.number}</Typography></TableCell>
+              <TableCell >{NATIONALITY_HUMAN_NAMES[item.nat]}</TableCell>
             </TableRow>
           ))}
         </TableBody>
